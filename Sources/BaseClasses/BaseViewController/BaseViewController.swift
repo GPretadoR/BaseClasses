@@ -11,24 +11,22 @@ import Development_Support
 import KRProgressHUD
 import UIKit
 
-public class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
 
     private lazy var topBarImageView = AppImageView {
         $0.backgroundColor = AppColors.clear
         $0.contentMode = .scaleAspectFit
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBarStyle()
 
-        KRProgressHUD.set(style: .black)
+        KRProgressHUD.set(style: .custom(background: AppColors.appMainThemeColor, text: AppColors.white, icon: AppColors.white))
         KRProgressHUD.set(maskType: .clear)
         KRProgressHUD.set(graceTime: 2.0)
         KRProgressHUD.set(duration: 2.0)
-//        KRProgressHUD.setBackgroundColor(AppColors.appMainThemeColor)
-//        KRProgressHUD.setForegroundColor(AppColors.white)
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
@@ -39,7 +37,7 @@ public class BaseViewController: UIViewController {
         setupReactiveComponents()
     }
 
-    public override func loadView() {
+    open override func loadView() {
         super.loadView()
         setupView()
     }
