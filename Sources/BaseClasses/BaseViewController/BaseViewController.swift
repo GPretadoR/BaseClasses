@@ -18,7 +18,7 @@ open class BaseViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
 
-    open override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBarStyle()
@@ -37,24 +37,24 @@ open class BaseViewController: UIViewController {
         setupReactiveComponents()
     }
 
-    open override func loadView() {
+    public override func loadView() {
         super.loadView()
         setupView()
     }
 
-    func setupView() {
+    public func setupView() {
         setupTexts()
     }
 
-    func setupViewModel() {}
+    public func setupViewModel() {}
 
-    func setupTexts() {
+    public func setupTexts() {
         navigationItem.title = title()
     }
 
-    func setupReactiveComponents() {}
+    public func setupReactiveComponents() {}
 
-    func addCloseButton(on vc: UIViewController, action: Selector) {
+    public func addCloseButton(on vc: UIViewController, action: Selector) {
         guard let closeImage = UIImage(named: "close") else { return }
         closeImage.resizableImage(withCapInsets: UIEdgeInsets(top: 1, left: closeImage.size.width - 1, bottom: 0, right: 0))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: closeImage, style: .plain, target: self, action: action)
