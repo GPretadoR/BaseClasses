@@ -18,7 +18,7 @@ open class BaseViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBarStyle()
