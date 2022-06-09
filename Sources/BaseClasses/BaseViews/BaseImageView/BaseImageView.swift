@@ -9,8 +9,8 @@
 import AppCustomization
 import UIKit
 
-public class BaseImageView: UIImageView {
-    public var hasShadow: Bool = false {
+open class BaseImageView: UIImageView {
+    open var hasShadow: Bool = false {
         didSet {
             if self.hasShadow {
                 self.addCornerRadiusAndShadow(cornerRadius: layer.cornerRadius,

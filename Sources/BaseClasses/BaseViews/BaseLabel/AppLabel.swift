@@ -9,7 +9,7 @@
 import AppCustomization
 import UIKit
 
-public class AppLabel: BaseLabel {
+open class AppLabel: BaseLabel {
 
     public var allowCopyOnLongPress = false {
         didSet {
@@ -23,7 +23,7 @@ public class AppLabel: BaseLabel {
         super.init(frame: frame)
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 

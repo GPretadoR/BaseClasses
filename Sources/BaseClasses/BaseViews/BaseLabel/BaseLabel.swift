@@ -8,15 +8,15 @@
 
 import UIKit
 
-public class BaseLabel: UILabel {
+open class BaseLabel: UILabel {
 
-    public var textInsets: UIEdgeInsets = UIEdgeInsets.zero
+    open var textInsets: UIEdgeInsets = UIEdgeInsets.zero
 
-    public override func drawText(in rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: textInsets))
     }
 
-    public override var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         var contentSize = super.intrinsicContentSize
         contentSize.height += textInsets.top + textInsets.bottom
         contentSize.width += textInsets.left + textInsets.right

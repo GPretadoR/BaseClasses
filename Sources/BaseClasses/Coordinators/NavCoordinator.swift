@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-public class NavCoordinator: BaseCoordinator {
+open class NavCoordinator: BaseCoordinator {
 
     private(set) var navigationController: BaseNavigationController
-    public weak var navigationPresentingController: UIViewController?
+    open weak var navigationPresentingController: UIViewController?
 
     public init(context: ContextProtocol, root controller: BaseNavigationController) {
         navigationController = controller
@@ -28,7 +28,7 @@ public class NavCoordinator: BaseCoordinator {
 
     // MARK: -
 
-    public func push(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+    open func push(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
             navigationController.coordinator = self
             navigationController.pushViewController(viewController, animated: animated)
@@ -36,7 +36,7 @@ public class NavCoordinator: BaseCoordinator {
         }
     }
 
-    public func replace(with viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+    open func replace(with viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
             navigationController.setViewControllers(
                 navigationController.viewControllers.dropLast() + [viewController],
@@ -45,7 +45,7 @@ public class NavCoordinator: BaseCoordinator {
         }
     }
 
-    public func set(_ viewControllers: [UIViewController], animated: Bool, completion: (() -> Void)? = nil) {
+    open func set(_ viewControllers: [UIViewController], animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
             navigationController.setViewControllers(
                 viewControllers,
@@ -54,7 +54,7 @@ public class NavCoordinator: BaseCoordinator {
         }
     }
 
-    public func pop(animated: Bool, completion: (() -> Void)? = nil) {
+    open func pop(animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
             _ = navigationController.popViewController(animated: animated)
             parentCoordinator?.removeChildCoordinator(self)
@@ -62,7 +62,7 @@ public class NavCoordinator: BaseCoordinator {
         }
     }
 
-    public func pop(to viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+    open func pop(to viewController: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
             navigationController.popToViewController(viewController, animated: animated)
             var currentCoordinator = self
@@ -77,7 +77,7 @@ public class NavCoordinator: BaseCoordinator {
         }
     }
 
-    public func popControllerToType<T>() -> T? {
+    open func popControllerToType<T>() -> T? {
         for controller in navigationController.viewControllers {
             if let theController = controller as? T {
                 navigationController.popToViewController(controller, animated: false)
@@ -88,7 +88,7 @@ public class NavCoordinator: BaseCoordinator {
         return nil
     }
 
-    public func findParentCoordinatorByType<T>() -> T? {
+    open func findParentCoordinatorByType<T>() -> T? {
         var baseCoordinator = parentCoordinator
 
         while baseCoordinator != nil {
@@ -100,7 +100,7 @@ public class NavCoordinator: BaseCoordinator {
         return nil
     }
 
-    public func popToRoot(animated: Bool, completion: (() -> Void)?) {
+    open func popToRoot(animated: Bool, completion: (() -> Void)?) {
         transaction(with: completion) {
             navigationController.popToRootViewController(animated: animated)
             navigationController.coordinator = nil

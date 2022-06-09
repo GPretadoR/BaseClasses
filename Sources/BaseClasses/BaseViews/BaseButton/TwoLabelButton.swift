@@ -10,7 +10,7 @@ import AppCustomization
 import Development_Support
 import UIKit
 
-public class TwoLabelButton: BaseButton {
+open class TwoLabelButton: BaseButton {
 
     private var leftSideLabel = AppLabel {
         $0.style(textStyle: .regular18px, color: AppColors.appDarkGrayColor)
@@ -20,7 +20,7 @@ public class TwoLabelButton: BaseButton {
         $0.style(textStyle: .regular18px, color: AppColors.appDarkGrayColor)
     }
 
-    public override func setup() {
+    open override func setup() {
         super.setup()
         addSubview(leftSideLabel)
         addSubview(rightSideLabel)
@@ -33,16 +33,16 @@ public class TwoLabelButton: BaseButton {
 
     }
 
-    public func configure(leftTitle: String? = nil, rightTitle: String? = nil) {
+    open func configure(leftTitle: String? = nil, rightTitle: String? = nil) {
         leftSideLabel.text = leftTitle ?? leftSideLabel.text
         rightSideLabel.text = rightTitle ?? rightSideLabel.text
     }
 
-    public func configureStyle(leftLabelStyle: TextsStyles, color: UIColor) {
+    open func configureStyle(leftLabelStyle: TextsStyles, color: UIColor) {
         leftSideLabel.style(textStyle: leftLabelStyle, color: color)
     }
 
-    public func configureStyle(rightLabelStyle: TextsStyles, color: UIColor) {
+    open func configureStyle(rightLabelStyle: TextsStyles, color: UIColor) {
         rightSideLabel.style(textStyle: rightLabelStyle, color: color)
     }
 }

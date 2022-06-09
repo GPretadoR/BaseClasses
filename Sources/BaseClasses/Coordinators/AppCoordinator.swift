@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class AppCoordinator: BaseCoordinator {
+open class AppCoordinator: BaseCoordinator {
 
     func restartRootCoordinator() {
 //        let mainViewCoordinator = MainViewCoordinator(context: Current.context,

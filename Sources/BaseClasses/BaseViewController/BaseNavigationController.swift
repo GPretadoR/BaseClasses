@@ -13,7 +13,7 @@ public protocol BaseNavigationControllerDelegate: AnyObject {
     func didPopToRootViewController(viewControllers: [UIViewController])
 }
 
-public class BaseNavigationController: UINavigationController {
+open class BaseNavigationController: UINavigationController {
     // Very bad workaround
     weak var coordinator: BaseCoordinator?
 

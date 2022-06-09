@@ -6,5 +6,5 @@
 //  Copyright © 2020 Garnik Ghazaryan. All rights reserved.
 //
 
-public class BaseViewModel {
+open class BaseViewModel {
 }

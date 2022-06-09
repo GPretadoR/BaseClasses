@@ -9,19 +9,19 @@
 import AppCustomization
 import UIKit
 
-public class BaseTableViewCell: UITableViewCell {
+open class BaseTableViewCell: UITableViewCell {
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         guard let label = textLabel as? AppLabel else { return }
         setStyle(label: label, style: .none)
     }
 
-    public override func setSelected(_ selected: Bool, animated: Bool) {
+    open override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
-    public func setStyle(label: AppLabel, style: TextsStyles) {
+    open func setStyle(label: AppLabel, style: TextsStyles) {
         label.style(for: style)
     }
 }

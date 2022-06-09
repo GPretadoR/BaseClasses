@@ -16,57 +16,57 @@ public enum ButtonStyle {
     case borderAndIcon
 }
 
-public class BaseButton: UIButton {
+open class BaseButton: UIButton {
 
-    public var titleText: String? {
+    open var titleText: String? {
         didSet {
             setTitle(titleText, for: .normal)
         }
     }
 
-    public var borderColor: UIColor = UIColor.clear {
+    open var borderColor: UIColor = UIColor.clear {
         didSet {
             layer.borderColor = borderColor.cgColor
         }
     }
 
-    public var borderWidth: CGFloat = 0 {
+    open var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
 
-    public var textColor: UIColor = .blue {
+    open var textColor: UIColor = .blue {
         didSet {
             setTitleColor(textColor, for: .normal)
         }
     }
 
-    public var highlightedTextColor: UIColor = .lightGray {
+    open var highlightedTextColor: UIColor = .lightGray {
         didSet {
             setTitleColor(highlightedTextColor, for: .highlighted)
         }
     }
 
-    public var icon: UIImage? {
+    open var icon: UIImage? {
         didSet {
             setImage(icon, for: .normal)
         }
     }
 
-    public var backgroundImage: UIImage? {
+    open var backgroundImage: UIImage? {
         didSet {
             setBackgroundImage(backgroundImage, for: .normal)
         }
     }
 
-    public var highLightedIcon: UIImage? {
+    open var highLightedIcon: UIImage? {
         didSet {
             setImage(highLightedIcon, for: .highlighted)
         }
     }
 
-    public var hasShadow: Bool = false {
+    open var hasShadow: Bool = false {
         didSet {
             if self.hasShadow {
                 self.addCornerRadiusAndShadow(cornerRadius: layer.cornerRadius,
@@ -88,7 +88,7 @@ public class BaseButton: UIButton {
         setup()
     }
 
-    public func setup() {
+    open func setup() {
         layer.cornerRadius = 6
         highlightedTextColor = AppColors.gray
     }

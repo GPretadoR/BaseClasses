@@ -10,25 +10,25 @@ import AppCustomization
 import Development_Support
 import UIKit
 
-public class ChargeProgressView: UIProgressView {
+open class ChargeProgressView: UIProgressView {
     @IBInspectable var barHeight: CGFloat = 16
     @IBInspectable var cornerRadius: CGFloat = 8
     @IBInspectable var thumbImage: UIImage = UIImage()
 
-    public var borderColor: UIColor = AppColors.white {
+    open var borderColor: UIColor = AppColors.white {
         didSet {
             layer.borderColor = borderColor.cgColor
             layer.borderWidth = 1.0
         }
     }
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
         addThumbIcon()
     }
 
-    override public var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: barHeight)
     }
 

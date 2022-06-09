@@ -8,11 +8,11 @@
 
 import UIKit
 
-public class BaseTextField: UITextField {
+open class BaseTextField: UITextField {
 
-    public var canPerformActionsOnLongPress: Bool = true
+    open var canPerformActionsOnLongPress: Bool = true
 
-    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+    override open func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return canPerformActionsOnLongPress
     }
 }

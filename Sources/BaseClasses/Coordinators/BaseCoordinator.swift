@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class BaseCoordinator: Coordinator {
+open class BaseCoordinator: Coordinator {
 
     var context: ContextProtocol?
 
-    public weak var parentCoordinator: BaseCoordinator?
-    public var childCoordinators: [BaseCoordinator] = []
+    open weak var parentCoordinator: BaseCoordinator?
+    open var childCoordinators: [BaseCoordinator] = []
 
-    public var controller: UIViewController?
+    open var controller: UIViewController?
 
     init() {}
 
@@ -29,9 +29,9 @@ public class BaseCoordinator: Coordinator {
         controller = viewController
     }
 
-    public func start() {}
+    open func start() {}
 
-    public func changeCoordinatorsRoot(coordinator: BaseCoordinator) {
+    open func changeCoordinatorsRoot(coordinator: BaseCoordinator) {
         var currentCoordinator = self
         while currentCoordinator.parentCoordinator != nil {
             currentCoordinator.removeAllChildCoordinators()
@@ -45,24 +45,24 @@ public class BaseCoordinator: Coordinator {
         currentCoordinator.addChildCoordinator(coordinator)
     }
 
-    public func present(_ presentable: Presentable, animated: Bool, completion: (() -> Void)? = nil) {
+    open func present(_ presentable: Presentable, animated: Bool, completion: (() -> Void)? = nil) {
         let vc = presentable.present()
         controller?.present(vc, animated: animated, completion: completion)
     }
 
-    public func dismissModal(animated: Bool, completion: (() -> Void)? = nil) {
+    open func dismissModal(animated: Bool, completion: (() -> Void)? = nil) {
         guard let controller = controller else { return }
         controller.dismiss(animated: animated, completion: completion)
         parentCoordinator?.removeAllChildCoordinators()
     }
 
-    public func dismissModal(animated: Bool, childCoordinator: BaseCoordinator, completion: (() -> Void)? = nil) {
+    open func dismissModal(animated: Bool, childCoordinator: BaseCoordinator, completion: (() -> Void)? = nil) {
         guard let controller = controller else { return }
         controller.dismiss(animated: animated, completion: completion)
         parentCoordinator?.removeChildCoordinator(childCoordinator)
     }
 
-    public func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
+    open func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
         guard let controller = controller else { return }
 
         var currentCoordinator = self
@@ -86,22 +86,22 @@ public class BaseCoordinator: Coordinator {
         }
     }
 
-    public func addChildCoordinator(_ coordinator: BaseCoordinator) {
+    open func addChildCoordinator(_ coordinator: BaseCoordinator) {
         childCoordinators.append(coordinator)
         coordinator.parentCoordinator = self
     }
 
-    public func removeChildCoordinator(_ coordinator: BaseCoordinator) {
+    open func removeChildCoordinator(_ coordinator: BaseCoordinator) {
         if let index = childCoordinators.firstIndex(of: coordinator) {
             childCoordinators.remove(at: index)
         }
     }
 
-    public func removeAllChildCoordinators() {
+    open func removeAllChildCoordinators() {
         childCoordinators.removeAll()
     }
 
-    public func transaction(with completion: (() -> Void)?, action: () -> Void) {
+    open func transaction(with completion: (() -> Void)?, action: () -> Void) {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         action()

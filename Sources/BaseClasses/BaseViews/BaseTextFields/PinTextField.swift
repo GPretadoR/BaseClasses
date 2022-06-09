@@ -12,9 +12,9 @@ public protocol PinTextFieldDelegate: UITextFieldDelegate {
     func textField(_ textField: UITextField, didDeleteBackward wasEmpty: Bool)
 }
 
-public class PinTextField: AppTextField {
+open class PinTextField: AppTextField {
 
-    override public func deleteBackward() {
+    override open func deleteBackward() {
         // see if text was empty
         let wasEmpty = text == nil || text?.isEmpty ?? true
 

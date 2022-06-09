@@ -9,21 +9,21 @@
 import AppCustomization
 import UIKit
 
-public class AppImageView: BaseImageView {
+open class AppImageView: BaseImageView {
 
-    public var imageRenderingMode: UIImage.RenderingMode = .alwaysTemplate
+    open var imageRenderingMode: UIImage.RenderingMode = .alwaysTemplate
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
         configureDefaultValues()
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
     /// Image with ability to change colors. Use 'image' property for original icon color
-    public var tintableImage: UIImage? {
+    open var tintableImage: UIImage? {
         get {
             image
         }

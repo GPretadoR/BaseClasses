@@ -6,4 +6,4 @@
 //  Copyright © 2020 Garnik Ghazaryan. All rights reserved.
 //
 
-public class AppView: BaseView {}
+open class AppView: BaseView {}

@@ -9,7 +9,7 @@
 import AppCustomization
 import UIKit
 
-public class AppTextField: BaseTextField {
+open class AppTextField: BaseTextField {
 
     public var oldText: String?
 
@@ -23,7 +23,7 @@ public class AppTextField: BaseTextField {
         super.init(frame: frame)
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 

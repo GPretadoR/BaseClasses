@@ -10,7 +10,7 @@ import AppCustomization
 import Development_Support
 import UIKit
 
-public class BaseView: UIView {
+open class BaseView: UIView {
 
     public init() {
         super.init(frame: .zero)
