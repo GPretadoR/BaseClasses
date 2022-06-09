@@ -29,7 +29,7 @@ open class BaseCoordinator: Coordinator {
         controller = viewController
     }
 
-    public func start() {}
+    open func start() {}
 
     public func changeCoordinatorsRoot(coordinator: BaseCoordinator) {
         var currentCoordinator = self
