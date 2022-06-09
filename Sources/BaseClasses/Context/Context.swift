@@ -8,6 +8,8 @@
 
 import Foundation
 
-class Context {
+class Context: ContextProtocol {
     let services = Services()
 }
+
+public protocol ContextProtocol {}

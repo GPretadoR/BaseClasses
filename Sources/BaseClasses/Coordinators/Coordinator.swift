@@ -6,6 +6,6 @@
 //  Copyright © 2020 Garnik Ghazaryan. All rights reserved.
 //
 
-protocol Coordinator {
+public protocol Coordinator {
     func start()
 }

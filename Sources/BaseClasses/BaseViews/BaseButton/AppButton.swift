@@ -9,7 +9,7 @@
 import AppCustomization
 import UIKit
 
-enum AppButtonStyle {
+public enum AppButtonStyle {
     case plain
     case filled
     case bordered
@@ -17,17 +17,17 @@ enum AppButtonStyle {
     case borderedWithIcon
 }
 
-class AppButton: BaseButton {
+public class AppButton: BaseButton {
     
     var imageRenderingMode: UIImage.RenderingMode = .alwaysTemplate
 
-    init(style: AppButtonStyle) {
+    public init(style: AppButtonStyle) {
         super.init(frame: .zero)
         setup(with: style)
         configureDefaultValues()
     }
 
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         configureDefaultValues()
     }
@@ -36,7 +36,7 @@ class AppButton: BaseButton {
         super.init(coder: coder)
     }
 
-    override var icon: UIImage? {
+    override public var icon: UIImage? {
         didSet {
             let tintedImage = icon?.withRenderingMode(imageRenderingMode)
             setImage(tintedImage, for: .normal)
@@ -47,19 +47,19 @@ class AppButton: BaseButton {
         tintColor = AppColors.appMainThemeColor
     }
 
-    func style(for style: TextsStyles) {
+    public func style(for style: TextsStyles) {
         guard let textStyle = TextsStyles(style: style)?.style else { return }
         textColor = textStyle.textColor ?? .systemBlue
         titleLabel?.font = textStyle.font
     }
 
-    func style(for style: TextsStyles, color: UIColor) {
+    public func style(for style: TextsStyles, color: UIColor) {
         guard let textStyle = TextsStyles(style: style)?.style else { return }
         textColor = color
         titleLabel?.font = textStyle.font
     }
 
-    func setup(with style: AppButtonStyle) {
+    private func setup(with style: AppButtonStyle) {
         super.setup()
         switch style {
         case .bordered:

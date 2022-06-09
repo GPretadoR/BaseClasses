@@ -9,24 +9,24 @@
 import AppCustomization
 import UIKit
 
-class CheckboxButton: BaseButton {
+public class CheckboxButton: BaseButton {
 
-    var selectedIcon: UIImage? {
+    public var selectedIcon: UIImage? {
         didSet {
             let tintedImage = selectedIcon?.withRenderingMode(.alwaysTemplate)
             setBackgroundImage(tintedImage, for: .selected)
         }
     }
 
-    var deselectedIcon: UIImage? {
+    public var deselectedIcon: UIImage? {
         didSet {
             setBackgroundImage(deselectedIcon, for: .normal)
         }
     }
 
-    var checkBoxDidChange: ((Bool) -> Void)?
+    public var checkBoxDidChange: ((Bool) -> Void)?
 
-    override func setup() {
+    override public func setup() {
         super.setup()
         addTarget(self, action: #selector(checkBoxTapped(_ :)), for: .touchUpInside)
         configureDefaultValues()
@@ -41,7 +41,7 @@ class CheckboxButton: BaseButton {
         checkBoxDidChange?(isSelected)
     }
 
-    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    public override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return bounds.insetBy(dx: -10, dy: -10).contains(point)
     }
 }

@@ -10,7 +10,7 @@ import AppCustomization
 import Development_Support
 import UIKit
 
-class ChargeProgressView: UIProgressView {
+public class ChargeProgressView: UIProgressView {
     @IBInspectable var barHeight: CGFloat = 16
     @IBInspectable var cornerRadius: CGFloat = 8
     @IBInspectable var thumbImage: UIImage = UIImage()
@@ -21,7 +21,7 @@ class ChargeProgressView: UIProgressView {
             layer.borderWidth = 1.0
         }
     }
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
