@@ -8,4 +8,6 @@
 
 open class BaseViewModel {
     public init() {}
+    
+    public func setupReactiveComponents() {}
 }
