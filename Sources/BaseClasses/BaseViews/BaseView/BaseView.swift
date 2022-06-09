@@ -32,7 +32,7 @@ open class BaseView: UIView {
         setupView()
     }
 
-    public func setupView() {}
+    open func setupView() {}
 
     public var hasShadow: Bool = false {
         didSet {
