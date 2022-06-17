@@ -42,17 +42,17 @@ open class BaseViewController: UIViewController {
         setupView()
     }
 
-    public func setupView() {
+    open func setupView() {
         setupTexts()
     }
 
-    public func setupViewModel() {}
+    open func setupViewModel() {}
 
-    public func setupTexts() {
+    open func setupTexts() {
         navigationItem.title = title()
     }
 
-    public func setupReactiveComponents() {}
+    open func setupReactiveComponents() {}
 
     public func addCloseButton(on vc: UIViewController, action: Selector) {
         guard let closeImage = UIImage(named: "close") else { return }
