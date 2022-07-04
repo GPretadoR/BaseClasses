@@ -9,5 +9,5 @@
 open class BaseViewModel {
     public init() {}
     
-    public func setupReactiveComponents() {}
+    open func setupReactiveComponents() {}
 }
