@@ -9,27 +9,27 @@
 import Combine
 import CoreLocation
 
-class LocationService {
+open class LocationService {
 
     private let serviceProvider: LocationServiceProvider
 
-    var currentLocation: CurrentValueSubject<CLLocation, Error> {
+    open var currentLocation: CurrentValueSubject<CLLocation, Error> {
         serviceProvider.currentLocation
     }
 
-    var locationSubject: PassthroughSubject<CLLocation, Error> {
+    open var locationSubject: PassthroughSubject<CLLocation, Error> {
         serviceProvider.locationSubject
     }
 
-    var locationAuthorizationSubject: PassthroughSubject<CLAuthorizationStatus, Error> {
+    open var locationAuthorizationSubject: PassthroughSubject<CLAuthorizationStatus, Error> {
         serviceProvider.locationAuthorizationSubject
     }
 
-    init(serviceProvider: LocationServiceProvider) {
+    public init(serviceProvider: LocationServiceProvider) {
         self.serviceProvider = serviceProvider
     }
 
-    func checkAuthorizationStatus() {
+    open func checkAuthorizationStatus() {
         serviceProvider.checkAuthorizationStatus()
     }
 

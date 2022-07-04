@@ -9,7 +9,7 @@
 import Combine
 import CoreLocation
 
-class LocationServiceProvider: NSObject, LocationServices {
+public class LocationServiceProvider: NSObject, LocationServices {
 
     var currentLocation = CurrentValueSubject<CLLocation, Error>(CLLocation())
     var locationSubject = PassthroughSubject<CLLocation, Error>()
@@ -91,14 +91,14 @@ class LocationServiceProvider: NSObject, LocationServices {
 }
 
 extension LocationServiceProvider: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location: CLLocation = locations.last {
             currentLocation.value = location
             locationSubject.send(location)
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied:
             disableUpdateLocation()
@@ -112,10 +112,10 @@ extension LocationServiceProvider: CLLocationManagerDelegate {
         locationAuthorizationSubject.send(status)
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         disableUpdateLocation()
         locationSubject.send(completion: .failure(error))
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {}
+    public func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {}
 }
