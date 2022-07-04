@@ -7,11 +7,14 @@
 //
 
 import AppCustomization
+import Combine
 import Development_Support
 import KRProgressHUD
 import UIKit
 
 open class BaseViewController: UIViewController {
+
+    public var cancellable = Set<AnyCancellable>()
 
     private lazy var topBarImageView = AppImageView {
         $0.backgroundColor = AppColors.clear

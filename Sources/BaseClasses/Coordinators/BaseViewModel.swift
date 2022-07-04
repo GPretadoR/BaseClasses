@@ -6,7 +6,12 @@
 //  Copyright © 2020 Garnik Ghazaryan. All rights reserved.
 //
 
+import Combine
+
 open class BaseViewModel {
+
+    public var cancellable = Set<AnyCancellable>()
+
     public init() {}
     
     open func setupReactiveComponents() {}
