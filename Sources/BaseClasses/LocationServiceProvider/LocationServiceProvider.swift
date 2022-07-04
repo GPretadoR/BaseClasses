@@ -29,7 +29,7 @@ public class LocationServiceProvider: NSObject, LocationServices {
 
     private var locationManager = CLLocationManager()
 
-    override init() {
+    override public init() {
         super.init()
         configure()
     }
