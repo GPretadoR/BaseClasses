@@ -19,7 +19,7 @@ public enum AppButtonStyle {
 
 open class AppButton: BaseButton {
     
-    var imageRenderingMode: UIImage.RenderingMode = .alwaysTemplate
+    public var imageRenderingMode: UIImage.RenderingMode = .alwaysOriginal
 
     public init(style: AppButtonStyle) {
         super.init(frame: .zero)
