@@ -13,11 +13,11 @@ import UIKit
 open class TwoLabelButton: BaseButton {
 
     private var leftSideLabel = AppLabel {
-        $0.style(textStyle: .regular18px, color: AppColors.appDarkGrayColor)
+        $0.style(textStyle: .regular(18), color: AppColors.appDarkGrayColor)
     }
 
     private var rightSideLabel = AppLabel {
-        $0.style(textStyle: .regular18px, color: AppColors.appDarkGrayColor)
+        $0.style(textStyle: .regular(18), color: AppColors.appDarkGrayColor)
     }
 
     open override func setup() {
