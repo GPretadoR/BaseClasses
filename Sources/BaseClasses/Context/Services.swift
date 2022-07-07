@@ -8,4 +8,6 @@
 
 import Foundation
 
-open class Services {}
+open class Services {
+    public init() {}
+}
