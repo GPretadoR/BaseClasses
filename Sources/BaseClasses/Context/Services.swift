@@ -8,4 +8,4 @@
 
 import Foundation
 
-class Services {}
+public class Services {}
