@@ -9,9 +9,9 @@
 import Foundation
 
 class Context: ContextProtocol {
-    let services: Services? = Services()
+    let services = Services()
 }
 
 public protocol ContextProtocol {
-    var services: Services? { get }
+    var services: Services { get }
 }
