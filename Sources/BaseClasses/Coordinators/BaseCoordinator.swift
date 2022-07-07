@@ -10,7 +10,7 @@ import UIKit
 
 open class BaseCoordinator: Coordinator {
 
-    var context: ContextProtocol?
+    public var context: ContextProtocol?
 
     public weak var parentCoordinator: BaseCoordinator?
     public var childCoordinators: [BaseCoordinator] = []
