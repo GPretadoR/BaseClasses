@@ -36,7 +36,7 @@ open class AppButton: BaseButton {
         super.init(coder: coder)
     }
 
-    override open var icon: UIImage? {
+    override public var icon: UIImage? {
         didSet {
             let tintedImage = icon?.withRenderingMode(imageRenderingMode)
             setImage(tintedImage, for: .normal)
@@ -47,19 +47,19 @@ open class AppButton: BaseButton {
         tintColor = AppColors.appMainThemeColor
     }
 
-    open func style(for style: TextsStyles) {
+    public func style(for style: TextsStyles) {
         guard let textStyle = TextsStyles(style: style)?.style else { return }
         textColor = textStyle.textColor ?? .systemBlue
         titleLabel?.font = textStyle.font
     }
 
-    open func style(for style: TextsStyles, color: UIColor) {
+    public func style(for style: TextsStyles, color: UIColor) {
         guard let textStyle = TextsStyles(style: style)?.style else { return }
         textColor = color
         titleLabel?.font = textStyle.font
     }
 
-    private func setup(with style: AppButtonStyle) {
+    public func setup(with style: AppButtonStyle) {
         super.setup()
         switch style {
         case .bordered:
