@@ -9,6 +9,9 @@
 import Combine
 
 open class BaseViewModel {
+    @Published public var isLoading: Bool = false
+    @Published public var errorMessage: String = ""
+    @Published public var successMessage: String = ""
 
     public var cancellable = Set<AnyCancellable>()
 
