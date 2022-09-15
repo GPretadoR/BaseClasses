@@ -13,8 +13,7 @@ open class CheckboxButton: BaseButton {
 
     open var selectedIcon: UIImage? {
         didSet {
-            let tintedImage = selectedIcon?.withRenderingMode(.alwaysTemplate)
-            setBackgroundImage(tintedImage, for: .selected)
+            setBackgroundImage(selectedIcon, for: .selected)
         }
     }
 

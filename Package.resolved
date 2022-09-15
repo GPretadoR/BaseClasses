@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "appcustomization",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GPretadoR/AppCustomization.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "7762e802bd702feb31e04cb780aef27a2ed4945f"
+      }
+    },
+    {
+      "identity" : "development-support",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GPretadoR/Development-Support.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "df30c1c8973df415c5487f1b0e88bafbe030b6bb"
+      }
+    },
+    {
+      "identity" : "kractivityindicatorview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krimpedance/KRActivityIndicatorView.git",
+      "state" : {
+        "revision" : "bcb0e841d6de0cd343a32bd5056580a56d06c0bc",
+        "version" : "3.0.7"
+      }
+    },
+    {
+      "identity" : "krprogresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krimpedance/KRProgressHUD.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "265142816d8f8ea93840accaf4ac7c49998e77c2"
+      }
+    }
+  ],
+  "version" : 2
+}
