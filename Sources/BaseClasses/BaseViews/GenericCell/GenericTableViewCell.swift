@@ -30,15 +30,15 @@ final public class GenericTableViewCell<View: ReusableView>: BaseTableViewCell {
         setupView()
     }
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        view.prepareForReuse()
+    }
+
     private func setupView() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.addSubview(view)
         contentView.embed(view: view, insets: .zero)
-    }
-
-    public override func prepareForReuse() {
-        super.prepareForReuse()
-        view.prepareForReuse()
     }
 }

@@ -9,7 +9,7 @@
 import Development_Support
 import UIKit
 
-final public class GenericCollectionViewCell<View: UIView>: BaseCollectionViewCell {
+final public class GenericCollectionViewCell<View: ReusableView>: BaseCollectionViewCell {
     public var view = View()
 
     override init(frame: CGRect) {
@@ -24,6 +24,11 @@ final public class GenericCollectionViewCell<View: UIView>: BaseCollectionViewCe
     public override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+    }
+
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        view.prepareForReuse()
     }
 
     private func setupView() {
