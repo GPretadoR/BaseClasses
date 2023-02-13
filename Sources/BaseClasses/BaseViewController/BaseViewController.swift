@@ -36,13 +36,9 @@ open class BaseViewController: UIViewController {
 
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
+        setupView()
         setupViewModel()
         setupReactiveComponents()
-    }
-
-    public override func loadView() {
-        super.loadView()
-        setupView()
     }
 
     open func setupView() {
