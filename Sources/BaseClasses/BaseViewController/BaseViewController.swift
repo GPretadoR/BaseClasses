@@ -34,7 +34,7 @@ open class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
 
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
 
         setupView()
         setupViewModel()
