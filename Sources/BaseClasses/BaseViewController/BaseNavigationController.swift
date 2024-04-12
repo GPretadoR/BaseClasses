@@ -15,7 +15,7 @@ public protocol BaseNavigationControllerDelegate: AnyObject {
 
 open class BaseNavigationController: UINavigationController {
     // Very bad workaround
-    weak var coordinator: BaseCoordinator?
+    weak var coordinator: NavCoordinator?
 
     var isInteractivePop: Bool = false
 
@@ -40,25 +40,21 @@ open class BaseNavigationController: UINavigationController {
     @discardableResult
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
-        if !isInteractivePop {
-            popCoordinator()
-        }
+        coordinator?.pop(animated: animated)
         return poppedVC
     }
     
     @discardableResult
     public override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         let poppedVCs = super.popToRootViewController(animated: animated)
-        if !isInteractivePop {
-            popCoordinator()
-        }
+        coordinator?.popToRoot(animated: animated, completion: nil)
         return poppedVCs
     }
 
     func popCoordinator() {
-        let parent = coordinator?.parentCoordinator
-        parent?.removeAllChildCoordinators()
-        coordinator = parent
+//        let parent = coordinator?.parentCoordinator
+//        parent?.removeAllChildCoordinators()
+////        coordinator = parent
     }
 }
 
