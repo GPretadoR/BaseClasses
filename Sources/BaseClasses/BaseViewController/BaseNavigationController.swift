@@ -30,10 +30,9 @@ open class BaseNavigationController: UINavigationController {
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
 
-        if let lastViewController = viewControllers.last,
-           let coordinatorVC = coordinator?.controller,
-           lastViewController == coordinatorVC,
-            var coordinator,
+        if let coordinatorVC = coordinator?.controller,
+           poppedVC == coordinatorVC,
+           var coordinator,
            let parent = coordinator.parentCoordinator {
 
             parent.removeChildCoordinator(coordinator)
