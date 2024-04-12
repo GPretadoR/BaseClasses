@@ -17,17 +17,6 @@ open class BaseNavigationController: UINavigationController {
     // Very bad workaround
     weak var coordinator: BaseCoordinator?
 
-    var isInteractivePop: Bool = false
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleSwipeBack))
-    }
-
-    @objc func handleSwipeBack() {
-        isInteractivePop = true
-    }
-
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
 //        interactivePopGestureRecognizer?.delegate = self
@@ -40,9 +29,16 @@ open class BaseNavigationController: UINavigationController {
     @discardableResult
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
-        let parent = coordinator?.parentCoordinator
-        parent?.removeAllChildCoordinators()
-        coordinator = parent
+
+        if let lastViewController = viewControllers.last,
+           let coordinatorVC = coordinator?.controller,
+           lastViewController == coordinatorVC,
+            var coordinator,
+           let parent = coordinator.parentCoordinator {
+
+            parent.removeChildCoordinator(coordinator)
+            coordinator = parent
+        }
         return poppedVC
     }
     
@@ -53,12 +49,6 @@ open class BaseNavigationController: UINavigationController {
         parent?.removeAllChildCoordinators()
         coordinator = parent
         return poppedVCs
-    }
-
-    func popCoordinator() {
-//        let parent = coordinator?.parentCoordinator
-//        parent?.removeAllChildCoordinators()
-//        coordinator = parent
     }
 }
 
