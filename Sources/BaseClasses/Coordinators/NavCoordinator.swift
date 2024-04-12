@@ -56,7 +56,7 @@ open class NavCoordinator: BaseCoordinator {
 
     public func pop(animated: Bool, completion: (() -> Void)? = nil) {
         transaction(with: completion) {
-            _ = navigationController.popViewController(animated: animated)
+            navigationController.popViewController(animated: animated)
             parentCoordinator?.removeChildCoordinator(self)
             navigationController.coordinator = nil
         }
