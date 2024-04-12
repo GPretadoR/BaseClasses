@@ -16,10 +16,21 @@ public protocol BaseNavigationControllerDelegate: AnyObject {
 open class BaseNavigationController: UINavigationController {
     // Very bad workaround
     weak var coordinator: BaseCoordinator?
-    
+
+//    var isInteractivePop: Bool = false
+//
+//    open override func viewDidLoad() {
+//        super.viewDidLoad()
+//        interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleSwipeBack))
+//    }
+//
+//    @objc func handleSwipeBack() {
+//        isInteractivePop = true
+//    }
+
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-        interactivePopGestureRecognizer?.delegate = self
+//        interactivePopGestureRecognizer?.delegate = self
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -44,11 +55,11 @@ open class BaseNavigationController: UINavigationController {
     }
 }
 
-extension BaseNavigationController: UIGestureRecognizerDelegate {
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let parent = coordinator?.parentCoordinator
-        parent?.removeAllChildCoordinators()
-        coordinator = parent
-        return true
-    }
-}
+//extension BaseNavigationController: UIGestureRecognizerDelegate {
+//    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        let parent = coordinator?.parentCoordinator
+//        parent?.removeAllChildCoordinators()
+//        coordinator = parent
+//        return true
+//    }
+//}
