@@ -41,6 +41,24 @@ open class BaseViewController: UIViewController {
         setupReactiveComponents()
     }
 
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let navigationController = navigationController as? BaseNavigationController, navigationController.isInteractivePop {
+            print("View controller popped with swipe gesture")
+            navigationController.popCoordinator()
+        }
+    }
+
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if let navigationController = navigationController as? BaseNavigationController {
+            // Reset the flag
+            navigationController.isInteractivePop = false
+        }
+    }
+
     open func setupView() {
         setupTexts()
     }
