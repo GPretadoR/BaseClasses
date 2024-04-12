@@ -16,10 +16,11 @@ public protocol BaseNavigationControllerDelegate: AnyObject {
 open class BaseNavigationController: UINavigationController {
     // Very bad workaround
     weak var coordinator: BaseCoordinator?
+//    var isSwipeCancelled: Bool = false
 
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
-//        interactivePopGestureRecognizer?.delegate = self
+        interactivePopGestureRecognizer?.delegate = self
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -51,11 +52,28 @@ open class BaseNavigationController: UINavigationController {
     }
 }
 
-//extension BaseNavigationController: UIGestureRecognizerDelegate {
-//    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+extension BaseNavigationController: UIGestureRecognizerDelegate {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 //        let parent = coordinator?.parentCoordinator
 //        parent?.removeAllChildCoordinators()
 //        coordinator = parent
-//        return true
-//    }
-//}
+        switch gestureRecognizer.state {
+        case .ended:
+            print("Swipe ended")
+        case .cancelled, .failed:
+//            isSwipeCancelled = true
+            print("Swipe cancelled")
+        case .began:
+            print("Swipe began")
+        case .possible:
+            print("Swipe possible")
+        case .recognized:
+            print("Swipe recognized")
+        case .changed:
+            print("Swipe changed")
+        default:
+            break
+        }
+        return true
+    }
+}
