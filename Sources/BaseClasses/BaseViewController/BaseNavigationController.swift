@@ -60,6 +60,10 @@ extension BaseNavigationController: UINavigationControllerDelegate {
         print("Swipe Will Show", viewController)
     }
 
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        print("Swipe Did Show", viewController)
+    }
+
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         print("Swipe From VC", fromVC)
         print("Swipe TO VC", toVC)
