@@ -16,7 +16,8 @@ public protocol BaseNavigationControllerDelegate: AnyObject {
 open class BaseNavigationController: UINavigationController {
     // Very bad workaround
     weak var coordinator: BaseCoordinator?
-//    var isSwipeCancelled: Bool = false
+
+    var isPoppingViewController: Bool = false
 
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
@@ -27,12 +28,17 @@ open class BaseNavigationController: UINavigationController {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        isPoppingViewController = false
+    }
+
     @discardableResult
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
 
-
+        isPoppingViewController = true
         print("Swipe POPPED", poppedVC)
 //        if let coordinatorVC = coordinator?.controller,
 //           poppedVC == coordinatorVC,
@@ -61,7 +67,12 @@ extension BaseNavigationController: UINavigationControllerDelegate {
     }
 
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        print("Swipe Did Show", viewController)
+        if isPoppingViewController {
+            print("Swipe Did Show", viewController)
+            let parent = coordinator?.parentCoordinator
+            parent?.removeAllChildCoordinators()
+            coordinator = parent
+        }
     }
 
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -76,23 +87,6 @@ extension BaseNavigationController: UIGestureRecognizerDelegate {
 //        let parent = coordinator?.parentCoordinator
 //        parent?.removeAllChildCoordinators()
 //        coordinator = parent
-//        switch gestureRecognizer.state {
-//        case .ended:
-//            print("Swipe ended")
-//        case .cancelled, .failed:
-////            isSwipeCancelled = true
-//            print("Swipe cancelled")
-//        case .began:
-//            print("Swipe began")
-//        case .possible:
-//            print("Swipe possible")
-//        case .recognized:
-//            print("Swipe recognized")
-//        case .changed:
-//            print("Swipe changed")
-//        default:
-//            break
-//        }
         return true
     }
 }
