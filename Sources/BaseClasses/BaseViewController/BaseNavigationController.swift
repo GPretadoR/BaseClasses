@@ -21,8 +21,29 @@ open class BaseNavigationController: UINavigationController {
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         interactivePopGestureRecognizer?.delegate = self
+        interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleSwipeGesture))
     }
-    
+
+    @objc func handleSwipeGesture(_ sender: UIGestureRecognizer) {
+        switch sender.state {
+        case .ended:
+            print("Swipe ended")
+        case .cancelled, .failed:
+//            isSwipeCancelled = true
+            print("Swipe cancelled")
+        case .began:
+            print("Swipe began")
+        case .possible:
+            print("Swipe possible")
+        case .recognized:
+            print("Swipe recognized")
+        case .changed:
+            print("Swipe changed")
+        default:
+            break
+        }
+    }
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -30,15 +51,15 @@ open class BaseNavigationController: UINavigationController {
     @discardableResult
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
-
-        if let coordinatorVC = coordinator?.controller,
-           poppedVC == coordinatorVC,
-           var coordinator,
-           let parent = coordinator.parentCoordinator {
-
-            parent.removeChildCoordinator(coordinator)
-            coordinator = parent
-        }
+        print("Swipe POPPED", poppedVC)
+//        if let coordinatorVC = coordinator?.controller,
+//           poppedVC == coordinatorVC,
+//           var coordinator,
+//           let parent = coordinator.parentCoordinator {
+//
+//            parent.removeChildCoordinator(coordinator)
+//            coordinator = parent
+//        }
         return poppedVC
     }
     
@@ -57,23 +78,23 @@ extension BaseNavigationController: UIGestureRecognizerDelegate {
 //        let parent = coordinator?.parentCoordinator
 //        parent?.removeAllChildCoordinators()
 //        coordinator = parent
-        switch gestureRecognizer.state {
-        case .ended:
-            print("Swipe ended")
-        case .cancelled, .failed:
-//            isSwipeCancelled = true
-            print("Swipe cancelled")
-        case .began:
-            print("Swipe began")
-        case .possible:
-            print("Swipe possible")
-        case .recognized:
-            print("Swipe recognized")
-        case .changed:
-            print("Swipe changed")
-        default:
-            break
-        }
+//        switch gestureRecognizer.state {
+//        case .ended:
+//            print("Swipe ended")
+//        case .cancelled, .failed:
+////            isSwipeCancelled = true
+//            print("Swipe cancelled")
+//        case .began:
+//            print("Swipe began")
+//        case .possible:
+//            print("Swipe possible")
+//        case .recognized:
+//            print("Swipe recognized")
+//        case .changed:
+//            print("Swipe changed")
+//        default:
+//            break
+//        }
         return true
     }
 }
