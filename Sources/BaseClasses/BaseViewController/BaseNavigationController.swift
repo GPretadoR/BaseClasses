@@ -54,7 +54,6 @@ open class BaseNavigationController: UINavigationController {
 extension BaseNavigationController: UINavigationControllerDelegate {
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         if isPoppingViewController {
-            print("Swipe Did Show", viewController)
             let parent = coordinator?.parentCoordinator
             parent?.removeAllChildCoordinators()
             coordinator = parent
