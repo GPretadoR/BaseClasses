@@ -58,6 +58,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
             let parent = coordinator?.parentCoordinator
             parent?.removeAllChildCoordinators()
             coordinator = parent
+            isPoppingViewController = false
         }
     }
 }
