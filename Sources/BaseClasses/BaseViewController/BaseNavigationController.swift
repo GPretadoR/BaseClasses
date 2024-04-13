@@ -21,28 +21,7 @@ open class BaseNavigationController: UINavigationController {
     public override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         interactivePopGestureRecognizer?.delegate = self
-        interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleSwipeGesture))
         delegate = self
-    }
-
-    @objc func handleSwipeGesture(_ sender: UIGestureRecognizer) {
-        switch sender.state {
-        case .ended:
-            print("Swipe ended")
-        case .cancelled, .failed:
-//            isSwipeCancelled = true
-            print("Swipe cancelled")
-        case .began:
-            print("Swipe began")
-        case .possible:
-            print("Swipe possible")
-        case .recognized:
-            print("Swipe recognized")
-        case .changed:
-            print("Swipe changed")
-        default:
-            break
-        }
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -78,11 +57,12 @@ open class BaseNavigationController: UINavigationController {
 
 extension BaseNavigationController: UINavigationControllerDelegate {
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        print("Swipe VC", viewController)
+        print("Swipe Will Show", viewController)
     }
 
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        print("Swipe VC", fromVC, toVC)
+        print("Swipe From VC", fromVC)
+        print("Swipe TO VC", toVC)
         return nil
     }
 }
