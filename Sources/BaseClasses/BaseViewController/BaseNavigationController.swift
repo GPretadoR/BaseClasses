@@ -22,6 +22,7 @@ open class BaseNavigationController: UINavigationController {
         super.init(rootViewController: rootViewController)
         interactivePopGestureRecognizer?.delegate = self
         interactivePopGestureRecognizer?.addTarget(self, action: #selector(handleSwipeGesture))
+        delegate = self
     }
 
     @objc func handleSwipeGesture(_ sender: UIGestureRecognizer) {
@@ -51,6 +52,8 @@ open class BaseNavigationController: UINavigationController {
     @discardableResult
     public override func popViewController(animated: Bool) -> UIViewController? {
         let poppedVC = super.popViewController(animated: animated)
+
+
         print("Swipe POPPED", poppedVC)
 //        if let coordinatorVC = coordinator?.controller,
 //           poppedVC == coordinatorVC,
@@ -70,6 +73,17 @@ open class BaseNavigationController: UINavigationController {
         parent?.removeAllChildCoordinators()
         coordinator = parent
         return poppedVCs
+    }
+}
+
+extension BaseNavigationController: UINavigationControllerDelegate {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        print("Swipe VC", viewController)
+    }
+
+    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        print("Swipe VC", fromVC, toVC)
+        return nil
     }
 }
 
