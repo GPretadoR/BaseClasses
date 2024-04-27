@@ -44,9 +44,7 @@ open class BaseNavigationController: UINavigationController {
     @discardableResult
     public override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         let poppedVCs = super.popToRootViewController(animated: animated)
-        let parent = coordinator?.parentCoordinator
-        parent?.removeAllChildCoordinators()
-        coordinator = parent
+        isPoppingViewController = true
         return poppedVCs
     }
 }
